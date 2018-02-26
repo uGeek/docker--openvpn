@@ -1,6 +1,6 @@
 # OpenVPN for Docker
 
-[![Build Status](https://travis-ci.org/koehn/docker-openvpn.svg)](https://travis-ci.org/koehn/docker-openvpn)
+[![Build Status](https://gitlab.koehn.com/ci/projects/1/status.svg?ref=master)](https://gitlab.koehn.com/docker/openvpn)
 [![Docker Stars](https://img.shields.io/docker/stars/koehn/openvpn.svg)](https://hub.docker.com/r/koehn/openvpn/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/koehn/openvpn.svg)](https://hub.docker.com/r/koehn/openvpn/)
 [![ImageLayers](https://images.microbadger.com/badges/image/koehn/openvpn.svg)](https://microbadger.com/#/images/koehn/openvpn)
