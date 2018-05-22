@@ -4,7 +4,7 @@ set -e
 
 IMAGE_NAME=koehn/openvpn
 
-docker build -t $IMAGE_NAME:latest --build-arg GIT_COMMIT=`git log -1 --format=%h` .
+docker build -t $IMAGE_NAME:latest --no-cache --build-arg GIT_COMMIT=`git log -1 --format=%h` .
 
 VERSION=`docker run --rm -it $IMAGE_NAME:latest openvpn --version | head -1 | awk '{print $2}'`
 
