@@ -3,8 +3,11 @@ before_script:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
 
 build_image:
+  variables:
+    IMAGE_NAME: "koehn/openvpn:latest"
   script:
-    - ./build
+    - docker build -t $IMAGE_NAME $BUILD_OPTIONS .
+    - docker push $IMAGE_NAME
 
 after_script:
   - docker logout
