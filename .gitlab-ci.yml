@@ -6,9 +6,10 @@
 #            - ubuntu-toolchain-r-test
 #        packages:
 #            - openvpn
+image: docker
 
 services:
-    - docker
+    - docker:dind
 
 before_install:
     - docker --version
