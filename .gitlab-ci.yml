@@ -1,34 +1,21 @@
-# Disallowing packages: openvpn
-# If you require these packages, please review the package approval process at: https://github.com/travis-ci/apt-package-whitelist#package-approval-process
-#addons:
-#    apt:
-#        sources:
-#            - ubuntu-toolchain-r-test
-#        packages:
-#            - openvpn
 image: docker
 
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+
 services:
-    - docker:dind
+  - docker:dind
 
-before_install:
-    - docker --version
-
-install:
-    - git clone https://github.com/docker-library/official-images.git official-images
-
-# Assist with ci test debugging:
-#   - DEBUG=1
 before_script:
-    - image="koehn/openvpn"
-    - docker build -t "$image" .
-    - docker inspect "$image"
-    - docker run --rm "$image" openvpn --version || true # why does it return 1?
-    - docker run --rm "$image" openssl version
+  - docker info
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
 
-script:
-    - official-images/test/run.sh "$image"
-    - test/run.sh "$image"
+build_image:
+  variables:
+    IMAGE_NAME: "koehn/openvpn:latest"
+  script:
+    - docker build -t $IMAGE_NAME $BUILD_OPTIONS .
+    - docker push $IMAGE_NAME
 
 after_script:
-    - docker images
+  - docker logout
